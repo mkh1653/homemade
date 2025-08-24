@@ -5,7 +5,6 @@ import {
 } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { SpecialtyService } from 'src/specialty/specialty.service';
-import { ProviderService } from 'src/provider/provider.service';
 import { ProviderSpecialty } from './entities/provider-specialty.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateProviderSpecialtyDto } from './dto/create-provider-specialty.dto';
@@ -17,7 +16,6 @@ export class ProviderSpecialtyService {
   constructor(
     @InjectRepository(ProviderSpecialty)
     private readonly repo: Repository<ProviderSpecialty>,
-    private readonly providerService: ProviderService,
     private readonly specialtyService: SpecialtyService,
   ) {}
 

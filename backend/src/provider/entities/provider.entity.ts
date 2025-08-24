@@ -14,6 +14,7 @@ import { ProviderSpecialty } from 'src/provider-specialty/entities/provider-spec
 import { Proposal } from 'src/proposal/entities/proposal.entity';
 import { Order } from 'src/order/entities/order.entity';
 import { Expose } from 'class-transformer';
+import { Review } from 'src/review/entities/review.entity';
 
 @Entity()
 export class Provider {
@@ -49,6 +50,9 @@ export class Provider {
 
   @OneToMany(() => Order, (order) => order.selectedProvider)
   selectedOrders: Order[];
+
+  @OneToMany(() => Review, (review) => review.customer)
+  reviews: Review[];
 
   @Expose()
   get fullName(): string {

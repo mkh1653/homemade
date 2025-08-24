@@ -39,7 +39,7 @@ export class CustomerService {
       }
     }
 
-    const customer = this.customerRepository.create(person);
+    this.customerRepository.create(person);
     return await this.customerRepository.save(person);
   }
 

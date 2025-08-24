@@ -65,7 +65,7 @@ export class ProviderService {
       );
     }
 
-    return this.findOne(savedProvider.publicId, {
+    return await this.findOne(savedProvider.publicId, {
       relations: ['person', 'providerSpecialties.specialty'],
     });
   }

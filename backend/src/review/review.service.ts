@@ -60,10 +60,15 @@ export class ReviewService {
       );
     }
 
+    const customer = order.customer;
+    const provider = order.selectedProvider;
+
     const newReview = this.reviewRepository.create({
       rating,
       comment,
       order: order,
+      customer,
+      provider
     });
     const savedReview = await this.reviewRepository.save(newReview);
 

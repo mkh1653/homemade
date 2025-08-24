@@ -10,6 +10,7 @@ import {
 import { Person } from 'src/person/entities/person.entity';
 import { Order } from 'src/order/entities/order.entity';
 import { Expose } from 'class-transformer';
+import { Review } from 'src/review/entities/review.entity';
 
 @Entity()
 export class Customer {
@@ -30,6 +31,9 @@ export class Customer {
 
   @OneToMany(() => Order, (order) => order.customer)
   orders: Order[];
+
+  @OneToMany(() => Review, review => review.customer)
+  reviews: Review[];
 
   @Expose()
   get fullName(): string {

@@ -11,6 +11,8 @@ import {
 } from 'typeorm';
 
 import { Order } from 'src/order/entities/order.entity';
+import { Provider } from 'src/provider/entities/provider.entity';
+import { Customer } from 'src/customer/entities/customer.entity';
 
 @Entity()
 export class Review {
@@ -38,6 +40,12 @@ export class Review {
   })
   @JoinColumn()
   order: Order;
+
+  @ManyToOne(() => Customer, (customer) => customer.reviews)
+  customer: Customer;
+
+  @OneToOne(() => Provider, (provider) => provider.reviews)
+  provider: Provider;
 
   @CreateDateColumn()
   createdAt: Date;

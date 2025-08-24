@@ -1,7 +1,7 @@
 import { Expose, Type } from 'class-transformer';
-import { CustomerForReviewDto } from 'src/customer/dto/customer-for-review.dto';
-import { ProviderForReviewDto } from 'src/provider/dto/provider-for-review.dto';
-import { OrderForReviewDto } from 'src/order/dto/order-for-review.dto';
+import { CustomerResponseDto } from 'src/customer/dto/customer-response.dto';
+import { ProviderResponseDto } from 'src/provider/dto/provider-response.dto';
+import { OrderResponseDto } from 'src/order/dto/order-response.dto';
 
 export class ReviewResponseDto {
   @Expose()
@@ -14,39 +14,20 @@ export class ReviewResponseDto {
   comment: string;
 
   @Expose()
-  @Type(() => OrderForReviewDto)
-  order: OrderForReviewDto;
+  @Type(() => OrderResponseDto)
+  order: OrderResponseDto;
 
   @Expose()
-  @Type(() => CustomerForReviewDto)
-  customer: CustomerForReviewDto;
+  @Type(() => CustomerResponseDto)
+  customer: CustomerResponseDto;
 
   @Expose()
-  @Type(() => ProviderForReviewDto)
-  provider: ProviderForReviewDto;
+  @Type(() => ProviderResponseDto)
+  provider: ProviderResponseDto;
 
   @Expose()
   createdAt: Date;
 
   @Expose()
   updatedAt: Date;
-
-  @Expose({ name: 'orderPublicId' })
-  get orderPublicIdValue(): string {
-    return this.order ? this.order.publicId : null;
-  }
-
-  @Expose({ name: 'customer' })
-  @Type(() => CustomerForReviewDto)
-  get getCustomer(): CustomerForReviewDto {
-    return this.order && this.order.customer ? this.order.customer : null;
-  }
-
-  @Expose({ name: 'provider' })
-  @Type(() => ProviderForReviewDto)
-  get getProvider(): ProviderForReviewDto {
-    return this.order && this.order.selectedProvider
-      ? this.order.selectedProvider
-      : null;
-  }
 }
